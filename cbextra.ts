@@ -71,6 +71,7 @@ namespace dictionary {
 
 
     //% block="convert dictionary $dict to string"
+    //% dict.shadow="variables_get"
     //% weight=21
     export function dictionaryToString(dict: any): string {
         return JSON.stringify(dict);
@@ -81,9 +82,35 @@ namespace dictionary {
     //% dict.shadow="variables_get"
     //% dict.variable="myDict"
     //% key.shadow="text"
-    //% weight=10
+    //% weight=26
     export function dictionarySearch(dict: any, key: string): any {
-        return dict[key] // Return the value associated with the key
+        return dict[key]; // Return the value associated with the key
+    }
+
+    //% block="add to %dict | key %key value %val"
+    //% dict.shadow="variables_get"
+    //% val.shadow="math_number"
+    //% weight=28
+    export function dictAdd(dict: any, key: string, val: any): any {
+        dict[key] = val;
+        return dict;
+    }
+
+    //% block="remove pair from %dict: key %key"
+    //% dict.shadow="variables_get"
+    //% weight=27
+    export function dictRemove(dict: any, key: string): any {
+        delete dict[key];
+        return dict;
+    }
+
+    //% block="change value to %val for existing key %key in %dict"
+    //% dict.shadow="variables_get"
+    //% val.shadow="math_number"
+    //% weight=29
+    export function dictChange(dict: any, key: string, val: any): any {
+        dict[key] = val;
+        return dict;
     }
 }
 

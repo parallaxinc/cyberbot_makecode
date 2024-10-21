@@ -125,3 +125,8 @@ This section has a serial new line block thats been added that lets you simply a
 ```typescript
 serial.NewLine()
 ```
+## Supported targets
+- for PXT/micro:bit
+
+## License
+MIT

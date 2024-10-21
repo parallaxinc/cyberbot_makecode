@@ -53,31 +53,31 @@ cyberbot.servoAngle(ServoPin.Pin16, 90)
 ## Sensors
 This section contains blocks that can be used to read values from additional available sensors used by the Cyber:bot.
 
-Send a signal to the input pin which sends out an IR light at the desired frequency , it then waits for a signal to be recieved by the output pin which is then stored with a signal being detected storing a 0 and nothing being detected being a 1.
+Send a signal to the input pin which sends out an IR light at the desired frequency, it then waits for a signal to be received by the output pin which is then stored with a signal being detected storing a 0 and nothing being detected being a 1.
 ```typescript
 let ir_state = cyberbot.irDetect(BotPin.Pin14, BotPin.Pin13, 37500)
 ```
-Scan for a signal from an IR remote to be recieved and store the remote value in a variable.
+Scan for a signal from an IR remote to be received and store the remote value in a variable.
 ```typescript
 let ir_value = cyberbot.irRemote(BotPin.Pin13)
 ```
-Send a signal to activate an ultrasonic ping signal to be sent out, it then waits for the signal to be recieved and records the time it took in microseconds, after that it converts it to the desired units (CM).
+Send a signal to activate an ultrasonic ping signal to be sent out, it then waits for the signal to be received and records the time it took in microseconds, after that it converts it to the desired units (CM).
 ```typescript
 let ir_value = cyberbot.ping(ServoPin.Pin16, Units.CM)
 ```
-Starts reading the binary values returned by the QTI sensors stating if light is seen (0) or if there is no light (1), then compiling all the sensors values together converting it into a single decimal value. Next it takes the decimal value from qti_states and converts it back to binary, which is then shifted over to the desired bit location (3) and return the binary value that was stored there.
+Starts reading the binary values returned by the QTI sensors stating if light is seen (0) or if there is no light (1), then compiling all the sensors' values together converting them into a single decimal value. Next, it takes the decimal value from qti_states and converts it back to binary, which is then shifted over to the desired bit location (3) and returns the binary value that was stored there.
 ```typescript
 let qti_states = cyberbot.qtiRead(BotPin.Pin7, BotPin.Pin4)
 let bit_value = cyberbot.bitGet(qti_states, 3)
 ```
 
 ## Extras
-This extension also adds some blocks outside of the Cyber:bot category that allow you to better complete our tutorials as well as to help with other aspects of block coding.
+This extension also adds some blocks outside of the Cyber:bot category that allows you to better complete our tutorials as well as to help with other aspects of block coding.
 
 ### Dictionary & Radio
-A new catagory that is added is the dictionary catagory which allows you to do some simple things such as create and edit a dictionary, convert a dictionry to a string and vica versa, and find specific elements of a dictionary.
+A new category that is added is the dictionary category which allows you to do some simple things such as create and edit a dictionary, convert a dictionary to a string and vice versa, and find specific elements of a dictionary.
 
-Create a dictionary, add a new entry, change that entry, save the new changed entry in a seperate variable, then delete the new entry from the original dictionary.
+Create a dictionary, add a new entry, change that entry, save the new changed entry in a separate variable, and then delete the new entry from the original dictionary.
 ```typescript
 let dict = dictionary.createDictionary(
 ["key", "message"],
@@ -90,7 +90,7 @@ dict = dictionary.dictRemove(dict, "new")
 ```
 The radio category also has two new blocks that allow you to send and receive strings longer than normally allowed by Makecode.
 
-Convert a dictionary to a string and send it to another micro:bit.
+Convert a dictionary to a string and send it to another Micro:bit.
 ```typescript
 let package = dictionary.dictionaryToString(dict)
 radio.sendLongString(package)
@@ -103,7 +103,7 @@ radio.onLongMessageReceived(function (rLongString) {
 ```
 
 ### Basic & Loops
-The basic category adds a block similar to the show arrow block that instead shows 12 seperate clock hands and the loops category has a new range block in it that allows you to choose a start number, an end number, as well as a step size that can be added to the list part of the for element of loop.
+The basic category adds a block similar to the show arrow block that instead shows 12 separate clock hands and the loops category has a new range block in it that allows you to choose a start number, an end number, as well as a step size that can be added to the list part of the for element of loop.
 
 Loops through all clock hands going counterclockwise continuously.
 ```typescript
@@ -115,18 +115,19 @@ basic.forever(function () {
 ```
 
 ### Text
-All thats added for this category is an upper block that sets everything inside of it to uppercase and stores it in a variable.
+All that's added for this category is an upper block that sets everything inside of it to uppercase and stores it in a variable.
 ```typescript
 let uppercase = text.setToUpper("make this uppercase")
 ```
 
 ### Serial
-This section has a serial new line block thats been added that lets you simply add a new line to the serial terminal.
+This section has a serial new line block that's been added that lets you simply add a new line to the serial terminal.
 ```typescript
 serial.NewLine()
 ```
+
 ## Supported targets
-- for PXT/micro:bit
+- for PXT/microbit
 
 ## License
 MIT

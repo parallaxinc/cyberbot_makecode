@@ -77,14 +77,13 @@ This extension also adds some blocks outside of the Cyber:bot category that allo
 ### Dictionary & Radio
 A new category that is added is the dictionary category which allows you to do some simple things such as create and edit a dictionary, convert a dictionary to a string and vice versa, and find specific elements of a dictionary.
 
-Create a dictionary, add a new entry, change that entry, save the new changed entry in a separate variable, and then delete the new entry from the original dictionary.
+Create a dictionary, add a new entry, save the new entry in a separate variable, and then delete the new entry from the original dictionary.
 ```typescript
 let dict = dictionary.createDictionary(
 ["key", "message"],
 [22, "Hello"]
 )
 dict = dictionary.dictAdd(dict, "new", 70)
-dict = dictionary.dictChange("seventy", "new", dict)
 let store_val: number = dictionary.dictionarySearch(dict, "new")
 dict = dictionary.dictRemove(dict, "new")
 ```

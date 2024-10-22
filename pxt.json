@@ -1,6 +1,6 @@
 {
     "name": "Cyberbot",
-    "version": "",
+    "version": "1.0.0",
     "description": "Makecode extension to add blocks for use with the Cyberbot",
     "license": "MIT",
     "dependencies": {

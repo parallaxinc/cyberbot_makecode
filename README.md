@@ -1,10 +1,13 @@
 # Makecode Extension for the Cyber:bot Product
-Use this Library to add blocks for the [cyber:bot Robot Kit – with micro:bit](https://www.parallax.com/product/cyberbot-robot-kit-with-microbit/)
+Use this Library to add blocks for the [Cyber:bot Robot Kit – with Micro:bit](https://www.parallax.com/product/cyberbot-robot-kit-with-microbit/)
 
 ## Cyber:bot Makecode Tutorials
 // put link to tutorials here //
 
-## Basic Read Write
+## Cyber:bot Blocks
+The Cyber:bot extension adds two separate groups of blocks, that being the cyber:bot category and the extra blocks. The Cyber:bot blocks all directly control a part of the Cyber:bot that is either already part of the bot or is easily added using the boards built-in breadboard and our tutorials, these blocks are shown below.
+
+### Basic Read Write
 This section contains the blocks you will need to do basic reading and writing of any of the pins labeled P0-P22 on the Cyber:bot which are different than the ones used by the Micro:bit.
 
 Write high or low to any of the pins.
@@ -23,7 +26,7 @@ if (cyberbot.readDigitalBoole(BotPin.Pin8)) {
 }
 ```
 
-## Sound
+### Sound
 There are two blocks in this section that allow you to play a frequency intended for a piezo speaker through pins labeled P0-P15 and P22 on the Cyber:bot.
 
 The first option allows you to choose a specific note on a piano from Low C (131 Hz) to High B (988 Hz), as well as how long you want it to play in beats.
@@ -34,7 +37,7 @@ The second option allows you to choose a frequency in Hz (5000) and a duration i
 ```typescript
 cyberbot.tone(PiezoPin.Pin22, 5000, 1000)
 ```
-## Servos
+### Servos
 The blocks in this section allow you to execute basic commands on the Cyber:bots servos which can be connected to pins P0-P19 but are typically attached to P16-P19.
 
 Set the speed of the servo to full speed in the counterclockwise direction for 5 seconds, then full speed in the clockwise direction for 5 seconds, and finally stop moving completely.
@@ -50,7 +53,7 @@ Set the angle (0-180) of a parallax standard servo to 90
 cyberbot.servoAngle(ServoPin.Pin16, 90)
 ```
 
-## Sensors
+### Sensors
 This section contains blocks that can be used to read values from additional available sensors used by the Cyber:bot.
 
 Send a signal to the input pin which sends out an IR light at the desired frequency, it then waits for a signal to be received by the output pin which is then stored with a signal being detected storing a 0 and nothing being detected being a 1.

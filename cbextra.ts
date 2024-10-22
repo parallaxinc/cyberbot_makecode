@@ -91,7 +91,7 @@ namespace dictionary {
     //% dict.shadow="variables_get"
     //% val.shadow="math_number"
     //% weight=28
-    export function dictAdd(dict: any, key: string, val: any): any {
+    export function dictAdd(dict: any, key: string, val: any): { [key: string]: any } {
         dict[key] = val;
         return dict;
     }
@@ -99,17 +99,8 @@ namespace dictionary {
     //% block="remove pair from %dict: key %key"
     //% dict.shadow="variables_get"
     //% weight=27
-    export function dictRemove(dict: any, key: string): any {
+    export function dictRemove(dict: any, key: string): { [key: string]: any } {
         delete dict[key];
-        return dict;
-    }
-
-    //% block="change value to %val for existing key %key in %dict"
-    //% dict.shadow="variables_get"
-    //% val.shadow="math_number"
-    //% weight=29
-    export function dictChange(dict: any, key: string, val: any): any {
-        dict[key] = val;
         return dict;
     }
 }

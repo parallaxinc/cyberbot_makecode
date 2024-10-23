@@ -1,0 +1,20 @@
+{
+    "name": "Cyberbot",
+    "version": "1.0.0",
+    "description": "Makecode extension to add blocks for use with the Cyberbot",
+    "license": "MIT",
+    "dependencies": {
+        "core": "*",
+        "radio": "*",
+        "microphone": "*"
+    },
+    "files": [
+        "README.md",
+        "cbcore.ts",
+        "cbextra.ts"
+    ],
+    "testFiles": [
+        "test.ts"
+    ],
+    "public": true
+}

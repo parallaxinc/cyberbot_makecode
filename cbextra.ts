@@ -27,7 +27,7 @@ enum ClockNames {
 
 namespace serial {
     /**
-     * Print a line of text to the serial port
+     * Send a new line to the serial port
      * @param value to send over serial
      */
     //% blockId=serial_new_line block="serial|new line"
@@ -197,7 +197,7 @@ namespace radio {
 
 namespace text {
     /**
-     * Set all of the entered text will be set to be completely uppercase and saved.
+     * All of the entered text will be set to be completely uppercase and saved.
      * @param str The string that's to be set to uppercase.
      */
     //% blockId="text_set_to_uppercase" block="upper|%str"

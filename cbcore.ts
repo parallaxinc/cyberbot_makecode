@@ -85,12 +85,15 @@ enum Units {
     CM = 3
 }
 
+/**
+ * Start of the custom Cyberbot category containing all of the blocks in that category
+ */
 //% color=#1D75B5 weight=100 icon="\uf2db" block="cyber:bot"
 //% groups='["Basic Read/Write", "Sound", "Servos", "Sensors", "Other"]'
 //% blockGap=4
 namespace cyberbot {
 
-    // commands
+    // Communtication constants for the propeller chip to run the proper code sent to it
     export const HIGH = 1
     export const LOW = 2
     export const INPUT = 3
@@ -144,6 +147,7 @@ namespace cyberbot {
     let leftReverseSpeed = -75
     let rightReverseSpeed = 75
 
+    // Make sure the propeller chip is properly connected
     function connect() {
 
         while (true) {
@@ -161,13 +165,13 @@ namespace cyberbot {
         }
     }
 
-
     function botDisable(): void {
         pins.setPull(DigitalPin.P8, PinPullMode.PullNone);
         basic.pause(200);
         control.reset();
     }
 
+    // Sends the proper information to the propeller chip in a format it will understand
     export function sendCommand(pinA: number, pinB: number = null, cmd: number, s = 0, d: number = null, f: number = null): void {
         if (isConnected === false) {
             connect()
@@ -207,22 +211,35 @@ namespace cyberbot {
         return pins.i2cReadBuffer(ADDRESS, 4)[3]
     }
 
-    // change cmd param to dropdown with HIGH/LOW
-    //% block="%p write digital %s"
+    /**
+     * Set a desired pin to be either HIGH or LOW.
+     * @param pin  Choose the pin for which to set the state.
+     * @param state  Set the state to HIGH or LOW.
+     */
+    //% blockId="cyberbot_write_digital" block="%p write digital %s"
     //% group="Basic Read/Write"
     //% weight=100
     export function writeDigital(pin: BotPin, state: State): void {
         sendCommand(pin, null, state, 0, null, null);
     }
 
-    //% block="%pin write analog %f"
+    /**
+     * Set a PWM wave in Hz to be output on a desired pin.
+     * @param pin Choose the desired pin.
+     * @param f Set the desired frequency in Hz.
+     */
+    //% blockId="cyberbot_write_analog" block="%pin write analog %f"
     //% group="Basic Read/Write"
     //% weight=94
     export function writeAnalog(pin: BotPin, f: number): void {
         sendCommand(pin, null, PWM_OUT, 0, f, null);
     }
 
-    //% block="%pin read digital"
+    /**
+     * Read the current state of the desired pin.
+     * @param pin Choose the desired pin to read.
+     */
+    //% blockId="cyberbot_read_digital" block="%pin read digital"
     //% group="Basic Read/Write"
     //% weight=98
     export function readDigital(pin: BotPin): number {
@@ -232,7 +249,11 @@ namespace cyberbot {
         else { return 0; }
     }
 
-    //% block="%pin is high"
+    /**
+     * Use to compare the Boolean state of the desired pin 1 being True and 0 being False.
+     * @param pin Choose the desired pin to read.
+     */
+    //% blockId="cyberbot_read_digital_boole" block="%pin is high"
     //% group="Basic Read/Write"
     //% weight=96
     export function readDigitalBoole(pin: BotPin): boolean {
@@ -243,12 +264,12 @@ namespace cyberbot {
     }
 
     /**
-    * Play a note. 
-    * @param pin connected to the speaker, eg: PiezoPin.Pin22
-    * @param frequency of the tone, eg: Note.C5
-    * @param beatLength length of beat, eg: BeatFraction.Quarter
+    * Play a note at the desired frequency on the chosen pin for a certain amount of beats. 
+    * @param pin The pin connected to the speaker, eg: PiezoPin.Pin22
+    * @param frequency Frequency of the tone, eg: Note.C5
+    * @param beatLength Length of beat, eg: BeatFraction.Quarter
     */
-    //% block="%pin play|note %note=device_note|for %duration=device_beat"
+    //% blockId="cyberbot_play_note" block="%pin play|note %note=device_note|for %duration=device_beat"
     //% frequency.fieldEditor="note" frequency.defl="262"
     //% group="Sound"
     //% weight=104
@@ -257,12 +278,12 @@ namespace cyberbot {
     }
 
     /**
-    * Play a tone for a specific duration.
-    * @param pin connected to the speaker, eg: PiezoPin.Pin22
-    * @param frequency of the tone
-    * @param duration of the tone in milliseconds, eg: 1000
+    * Play a tone in Hz for a specific duration in ms.
+    * @param pin The pin connected to the speaker, eg: PiezoPin.Pin22
+    * @param frequency Frequency of the tone
+    * @param duration Duration of the tone in milliseconds, eg: 1000
     */
-    //% block="%pin tone freq %f dur %d "
+    //% blockId="cyberbot_play_tone" block="%pin tone freq %f dur %d "
     //% pin.fieldEditor="gridpicker"
     //% group="Sound"
     //% weight=102
@@ -271,10 +292,11 @@ namespace cyberbot {
     }
 
     /**
-    * 
-    * @param pin The pin connected to the servo, eg: ServoPin.Pin18
-    */
-    //% block="%pin servo angle %v"
+     * Set the Angle of the servo from 0-180.
+     * @param pin The pin connected to the servo, eg: ServoPin.Pin18
+     * @param angle The desired angle to set the servo to.
+     */
+    //% blockId="cyberbot_servo_angle" block="%pin servo angle %v"
     //% group="Servos"
     //% weight=196
     export function servoAngle(pin: ServoPin, angle: number = null): void {
@@ -284,11 +306,11 @@ namespace cyberbot {
     }
 
     /**
-    * Set a servo's speed. 
+    * Set a servo's speed.
     * @param pin The pin connected to the servo, eg: ServoPin.Pin18
-    * @param velocity The velocity of the servo from, eg: 0
+    * @param velocity The velocity of the servo from -75 to 75, eg: 0
     */
-    //% block="%pin servo speed %velocity"
+    //% blockId="cyberbot_servo_speed" block="%pin servo speed %velocity"
     //% velocity.min=-75 
     //% velocity.max=75
     //% group="Servos"
@@ -300,9 +322,11 @@ namespace cyberbot {
     }
 
     /**
-    * @param pin The pin connected to the servo, eg: ServoPin.Pin18
-    */
-    //% block="%pin servo accelerate %acceleration"
+     * Set the acceleration of the servo.
+     * @param pin The pin connected to the servo, eg: ServoPin.Pin18
+     * @param acceleration The speed that the servo accelerates, eg: 0
+     */
+    //% blockId="cyberbot_servo_accelerate" block="%pin servo accelerate %acceleration"
     //% group="Servos"
     //% weight=198
     export function servoAccelerate(pin: ServoPin, acceleration: number): void {
@@ -310,17 +334,23 @@ namespace cyberbot {
     }
 
     /**
-    * Stop a servo. 
+    * Stop the servo. 
     * @param pin The pin connected to the servo, eg: ServoPin.Pin18
     */
-    //% block="%pin servo stop"
+    //% blockId="cyberbot_servo_stop" block="%pin servo stop"
     //% group="Servos"
     //% weight=194
     export function servoStop(pin: ServoPin): void {
         sendCommand(pin, null, SERVO_DISABLE, 0, null, null);
     }
 
-    //% block="ir detect|in %pinIn out %pinOut hz %f"
+    /**
+     * Sends a signal to the in pin causing an IR light of the desired frequency to be output, then reads the out pin and returns a 1 if no IR light was received and a 0 if the IR light was received making it active low.
+     * @param pinIn The pin the takes an Input signal and outputs the Light.
+     * @param pinOut The pin that receives a signal and outputs the state that is detected.
+     * @param f The frequency of the IR light being sent out.
+     */
+    //% blockId="cyberbot_ir_detect" block="ir detect|in %pinIn out %pinOut hz %f"
     //% group="Sensors"
     //% weight=150
     export function irDetect(pinIn: BotPin, pinOut: BotPin, f: number) {
@@ -328,7 +358,12 @@ namespace cyberbot {
         return read_r();
     }
 
-    //% block="ping distance|in %pin unit of measurement %unit"
+    /**
+     * Sends a signal to the PING))) which sends out an ultrasonic sound wave and records the time it takes in microseconds for the signal to return then outputs either the time it takes or the distance depending on the units you choose
+     * @param pin The pin connected to the PING))), eg: ServoPin.Pin16
+     * @param unit The units used for the distance measured
+     */
+    //% blockId="cyberbot_ping" block="ping distance|in %pin units %unit"
     //% group="Sensors"
     //% weight=148
     export function ping(pin: ServoPin, unit: Units) {
@@ -339,7 +374,11 @@ namespace cyberbot {
         else { return d / 58 }
     }
 
-    //% block="ir remote|pin %pin"
+    /**
+     * Reads signals from an IR remote and returns a value equivalent to the button you pressed.
+     * @param pin The pin connected to the IR receiver.
+     */
+    //% blockId="cyberbot_ir_remote" block="ir remote|pin %pin"
     //% group="Sensors"
     //% weight=149
     export function irRemote(pin: BotPin) {
@@ -349,7 +388,12 @@ namespace cyberbot {
         return n
     }
 
-    //% block="qti read|start %pStart end %pEnd"
+    /**
+     * Reads the signals received from the QTI sensors and stores the binary states in a four-bit binary number that is then converted into a decimal value and returned 
+     * @param pStart The uppermost pin of the consecutive used pins
+     * @param pEnd The lowermost pins of the consecutive used pins
+     */
+    //% blockId="cyberbot_qti_read" block="qti read|start %pStart end %pEnd"
     //% group="Sensors"
     //% weight=147
     export function qtiRead(pStart: BotPin, pEnd: BotPin) {
@@ -357,7 +401,12 @@ namespace cyberbot {
         return read_r();
     }
 
-    //% block="bit get from %bitLoc at %bitShift"
+    /**
+     * Take any number and find the binary value at a desired bit location.
+     * @param bitLoc The number that we want to assess.
+     * @param bitShift The location we want to find the binary value at.
+     */
+    //% blockId="cyberbot_bit_get" block="bit get from %bitLoc at %bitShift"
     //% group="Sensors"
     //% weight=146
     export function bitGet(bitLoc: number, bitShift: number) {
@@ -365,14 +414,24 @@ namespace cyberbot {
         return z;
     }
 
-    //% block="%pin pulse out %d"
+    /**
+     * Send out a Pulse on the desired pin.
+     * @param pin The desired pin.
+     * @param d The pulse duration
+     */
+    //% blockId="cyberbot_pulse_out" block="%pin pulse out %d"
     //% group="Other"
     //% weight=100
     export function pulseOut(pin: BotPin, d: number): void {
         sendCommand(pin, null, PULSOUT, 0, d, null);
     }
 
-    //% block="%pin pulse in %s"
+    /**
+     * Read the data from the desired pin.
+     * @param pin The desired pin.
+     * @param s The expected pulse length.
+     */
+    //% blockId="cyberbot_pulse_in" block="%pin pulse in %s"
     //% group="Other"
     //% weight=98
     export function pulseIn(pin: BotPin, s: number): number {
@@ -380,7 +439,12 @@ namespace cyberbot {
         return read_r();
     }
 
-    //% block="%pin pulse count %d"
+    /**
+     * Reads the length of a pulse received at a desired pin.
+     * @param pin The desired pin.
+     * @param d The duration it should read for.
+     */
+    //% blockId="cyberbot_pulse_count" block="%pin pulse count %d"
     //% group="Other"
     //% weight=96
     export function pulseCount(pin: BotPin, d: number): number {
@@ -388,7 +452,12 @@ namespace cyberbot {
         return read_r();
     }
 
-    //% block="%pin rc time %s %d %f"
+    /**
+     * Determine the RC time of a circuit using a desired pin.
+     * @param pin The desired pin
+     * @param s The time it should read for.
+     */
+    //% blockId="cyberbot_rc_time" block="%pin rc time %s %d %f"
     //% group="Other"
     //% weight=95
     export function rcTime(pin: BotPin, s: number): number {
@@ -396,19 +465,11 @@ namespace cyberbot {
         return read_r();
     }
 
-    //% block
-    //% group="Other"
-    export function detach() {
-        while (true) {
-            readDigital(25);
-        }
-    }
-
     /**
      * Toggle the navigation lights
-     * @param control the lights
+     * @param control The lights state.
      */
-    //% block="navigation light %control"
+    //% blockId="cyberbot_nav_light_toggle" block="navigation light %control"
     //% subcategory="Navigation"
     //% control.shadow="toggleOnOff"
     //% weight=890
@@ -469,10 +530,10 @@ namespace cyberbot {
 
     /**
      * Choose the pins connected to each wheel's servo. 
-     * @param leftPin is the pin number connected to the left wheel servo, eg: ServoPin.Pin18
-     * @param rightPin is the pin number connected to the right wheel servo, eg: ServoPin.Pin19
+     * @param leftPin is the pin connected to the left wheel servo, eg: ServoPin.Pin18
+     * @param rightPin is the pin connected to the right wheel servo, eg: ServoPin.Pin19
      */
-    //% block="set left wheel %leftPin set right wheel %rightPin"
+    //% blockId="cyberbot_set_left_servo" block="set left wheel %leftPin set right wheel %rightPin"
     //% weight=1000
     //% subcategory="Navigation"
     //% inlineInputMode="external"
@@ -482,7 +543,12 @@ namespace cyberbot {
         rightServo = rightPin;
     }
 
-    //% block="calibrate forward: %fAdjustment calibrate backward: %bAdjustment"
+    /**
+     * Calibrate the servos
+     * @param fAdjustment Forward adjustments
+     * @param rAdjustment Reverse adjustments
+     */
+    //% blockId="cyberbot_calibrate" block="calibrate forward: %fAdjustment calibrate backward: %bAdjustment"
     //% fAdjustment.min=-15
     //% fAdjustment.max=15
     //% rAdjustment.min=-15
@@ -498,15 +564,11 @@ namespace cyberbot {
         rightReverseSpeed += rAdjustment;
     }
 
-
-
-    // make wheels go vroom vroom
-
     /**
     * Set the bot on a path. It will not stop unless told to stop. 
     * @param direction, eg: NavDirection.Forward
     */
-    //% block="go %direction"
+    //% blockId="cyberbot_nav_forever" block="go %direction"
     //% subcategory="Navigation"
     //% group="Directional"
     //% weight=200
@@ -544,13 +606,12 @@ namespace cyberbot {
         pause(10);
     }
 
-
     /**
     * Move the bot in a direction for a certain number of seconds. 
     * @param direction, eg: NavDirection.Forward
-    * @param duration of time in seconds, eg: 1
+    * @param duration Duration of time in seconds, eg: 1
     */
-    //% block="go %direction for %duration seconds"
+    //% blockId="cyberbot_nav_duration" block="go %direction for %duration seconds"
     //% subcategory="Navigation"
     //% group="Directional"
     //% weight=100
@@ -579,16 +640,14 @@ namespace cyberbot {
         stop()
     }
 
-
-
     /**
     * Set the bot on a path at a certain percent of full speed. 
     * @param direction, eg: NavDirection.Forward
-    * @param speed is percentage of full speed, eg: 100
+    * @param speed Percentage of full speed, eg: 100
     */
     //% speed.min=0
     //% speed.max=100
-    //% block="go %direction at %speed \\% full speed"
+    //% blockId="cyberbot_nav_speed" block="go %direction at %speed \\% full speed"
     //% subcategory="Navigation"
     //% weight=35
     //% group="Directional"
@@ -620,9 +679,9 @@ namespace cyberbot {
     }
 
     /**
-    * Stop the left and right wheels' servos. 
-    */
-    //% block="stop wheels"
+     * Stop the left and right wheels' servos.
+     */
+    //% blockId="cyberbot_stop" block="stop wheels"
     //% subcategory="Navigation"
     //% weight=0
     //% group="Directional"
@@ -633,14 +692,13 @@ namespace cyberbot {
         sendCommand(rightServo, null, SERVO_DISABLE, 0, null);
     }
 
-
     /**
      * Drive by specifying how fast each wheel should spin and for how long.
-     * @param leftSpeed is a percentage of the left wheel's full speed, eg: 100
-     * @param rightSpeed is a percentage of the right wheel's full speed, eg: 100
-     * @param time is time in seconds, eg: 1 
+     * @param leftSpeed A percentage of the left wheel's full speed, eg: 100
+     * @param rightSpeed A percentage of the right wheel's full speed, eg: 100
+     * @param time Time in seconds, eg: 1 
      */
-    //% block="set left wheel power %leftSpeed set right wheel power %rightSpeed drive for duration (sec) $time"
+    //% blockId="cyberbot_precision_drive" block="set left wheel power %leftSpeed set right wheel power %rightSpeed drive for duration (sec) $time"
     //% subcategory="Navigation"
     //% weight=25
     //% leftSpeed.min=-100 leftSpeed.max=100 leftSpeed.shadow="speedPicker"

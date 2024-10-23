@@ -30,8 +30,8 @@ namespace serial {
      * Print a line of text to the serial port
      * @param value to send over serial
      */
-    //% blockId=serial_newline block="serial|new line"
-    export function NewLine(): void {
+    //% blockId=serial_new_line block="serial|new line"
+    export function newLine(): void {
         serial.writeString("\r\n");
     }
 }
@@ -39,12 +39,12 @@ namespace serial {
 //% color=#FFAC00 weight=50 icon="\uf02d" block="Dictionary"
 //% blockGap=20
 namespace dictionary {
-    /*
+    /**
     * Create a dictionary with keys and values.
-    * @param key The keys used for searching
-    * @param value the values used for searching
+    * @param key The keys used for searching.
+    * @param value the values that are stored.
     */
-    //% block="create dictionary: keys $keys                  values $values"
+    //% blockId="dictionary_create" block="create dictionary: keys $keys                  values $values"
     //% keys.shadow="lists_create_with"
     //% keys.shadowArgs="TEXT" keys.defl="text"
     //% values.shadow="lists_create_with"
@@ -61,24 +61,34 @@ namespace dictionary {
         return dictionary;
     }
 
-
-    //% block="convert string $str to dictionary"
+    /**
+     * Convert a stringified dictionary into an actual dictionary.
+     * @param str The string that's to be converted.
+     */
+    //% blockId="dictionary_str_to_dict" block="convert string $str to dictionary"
     //% str.shadow="text"
     //% weight=20
     export function stringToDictionary(str: string): { [key: string]: any } {
         return JSON.parse(str);
     }
 
-
-    //% block="convert dictionary $dict to string"
+    /**
+     * Convert any dictionary into a basic string.
+     * @param dict The dictionary that's to be converted
+     */
+    //% blockId="dictionary_dict_to_str" block="convert dictionary $dict to string"
     //% dict.shadow="variables_get"
     //% weight=21
     export function dictionaryToString(dict: any): string {
         return JSON.stringify(dict);
     }
 
-
-    //% block="dictionary search $dict for $key"
+    /**
+     * Search a dictionary using one of the keys contained in it and save the value.
+     * @param dict The dictionary to be searched.
+     * @param key The key where the value is stored.
+     */
+    //% blockId="dictionary_search" block="dictionary search $dict for $key"
     //% dict.shadow="variables_get"
     //% dict.variable="myDict"
     //% key.shadow="text"
@@ -87,7 +97,13 @@ namespace dictionary {
         return dict[key]; // Return the value associated with the key
     }
 
-    //% block="add to %dict | key %key value %val"
+    /**
+     * Add any key-value pair to any dictionary that already exists.
+     * @param dict The dictionary you want to add to.
+     * @param key The key you want to add.
+     * @param val The value you want to add.
+     */
+    //% blockId="dictionary_add" block="add to %dict | key %key value %val"
     //% dict.shadow="variables_get"
     //% val.shadow="math_number"
     //% weight=28
@@ -96,7 +112,12 @@ namespace dictionary {
         return dict;
     }
 
-    //% block="remove pair from %dict: key %key"
+    /**
+     * Remove any key-value pair that is already contained within a dictionary.
+     * @param dict The dictionary you want to remove something from.
+     * @param key The key for the key-value pair you want to remove.
+     */
+    //% blockId="dictionary_remove" block="remove pair from %dict: key %key"
     //% dict.shadow="variables_get"
     //% weight=27
     export function dictRemove(dict: any, key: string): { [key: string]: any } {
@@ -106,7 +127,7 @@ namespace dictionary {
 }
 
 namespace loops {
-    /*
+    /**
     * Create an array from start value to end value incrementing by the desired step size.
     * @param sta The start value, eg:0
     * @param e The end value, eg:10
@@ -114,7 +135,7 @@ namespace loops {
     */
     //% sta.defl=0 e.defl=10 ste.defl=1
     //% weight=45 color=#dc143c
-    //% blockId=range block="range|start %sta end %e step %ste"
+    //% blockId="loops_range" block="range|start %sta end %e step %ste"
     export function range(sta: number = 0, e: number = 10, ste: number = 1): number[] {
         let rangeArray = [];
         let freq = sta;
@@ -134,8 +155,11 @@ namespace loops {
 }
 
 namespace radio {
-
-    //% block="radio|send long string %message"
+    /**
+     * Send a string that is longer than the restricted package length.
+     * @param message The long message to be sent.
+     */
+    //% blockId="radio_send_long_string" block="radio|send long string %message"
     //% weight=58 group="Send" blockGap=10
     export function sendLongString(message: string) {
         let chunkSize = 19; // Set the maximum size for each chunk
@@ -151,7 +175,11 @@ namespace radio {
         radio.sendString("END");
     }
 
-    //% block="on radio received"
+    /**
+     * The long string receiver that is paired with the send long string block.
+     * @param handler The variable that the new string is stored in
+     */
+    //% blockId="radio_long_message_received" block="on radio received"
     export function onLongMessageReceived(handler: (rLongString: string) => void) {
         let completeMessage = "";
 
@@ -168,8 +196,11 @@ namespace radio {
 
 
 namespace text {
-
-    //% block="upper|%str"
+    /**
+     * Set all of the entered text will be set to be completely uppercase and saved.
+     * @param str The string that's to be set to uppercase.
+     */
+    //% blockId="text_set_to_uppercase" block="upper|%str"
     export function setToUpper(str: string): string {
         return str.toUpperCase();
     }
@@ -177,14 +208,13 @@ namespace text {
 
 namespace basic {
     /**
-     * Draws an clock hand on the LED screen
-     * @param direction the time of the clock hand
+     * Draws a clock hand on the LED screen.
+     * @param direction The time that the clock hand is pointing at.
      * @param interval the amount of time (milliseconds) to show the icon. Default is 600.
      */
     //% weight=40 blockgap=8
-    //% block="show clock %i=device_clock"
+    //% blockId="basic_show_clock" block="show clock %i=device_clock"
     //% parts="ledmatrix"
-    //% help=basic/show-clock
     export function showClock(direction: number, interval = 600) {
         let res = images.clockImage(direction)
         res.showImage(0, interval)
@@ -192,10 +222,12 @@ namespace basic {
 }
 
 namespace images {
-
+    /**
+     * The LED matrix for each of the hours on a clock face.
+     * @param i Which hour is requested.
+     */
     //% weight=40 blockgap=8
-    //% help=images/clock-image
-    //% block="clock image %i"
+    //% blockId="images_clock" block="clock image %i"
     export function clockImage(i: ClockNames): Image {
         switch (i) {
             // compass directions
@@ -281,9 +313,12 @@ namespace images {
         }
     }
 
+    /**
+     * Returns the actual number associated with the clock's hour name.
+     * @param clock The hour name.
+     */
     //% weight=40 blockGap=8
-    //% help=images/clock-number
-    //% blockId=device_clock block="%clock"
+    //% blockId="device_clock" block="%clock"
     //% shim=TD_ID
     export function clockNumber(clock: ClockNames): number {
         return clock;

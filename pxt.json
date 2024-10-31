@@ -4,12 +4,14 @@
     "description": "Makecode extension to add blocks for use with the Cyberbot",
     "license": "MIT",
     "dependencies": {
-        "core": "*"
+        "core": "*",
+        "radio": "*"
     },
     "files": [
         "README.md",
         "cbcore.ts",
-        "cbextra.ts"
+        "cbnav.ts",
+        "cbsupport.ts"
     ],
     "testFiles": [
         "test.ts"

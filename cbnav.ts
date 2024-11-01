@@ -1,5 +1,5 @@
 /**
- * All blocks in the navigation subcategory are defined here
+ * All blocks in the support subcategory are defined here
  */
 namespace cyberbot {
 

@@ -223,7 +223,7 @@ namespace cyberbot {
     //% blockId="cyberbot_range" block="range|start %sta end %e step %ste"
     //% subcategory="support"
     //% group="Loops"
-    //% color=#dc143c 
+    //% color=#E65722
     //% weight=40
     export function range(sta: number = 0, e: number = 10, ste: number = 1): number[] {
         let rangeArray = [];
@@ -246,7 +246,7 @@ namespace cyberbot {
      * Set all of the entered text will be set to be completely uppercase and saved.
      * @param str The string thats to be set to uppercase.
      */
-    //% blockId="cyberbot_set_to_uppercase" block="upper|%str"
+    //% blockId="cyberbot_set_to_uppercase" block="set %str to upper"
     //% subcategory="support"
     //% group="Text"
     //% color=#B8860B 
@@ -272,7 +272,7 @@ namespace cyberbot {
      * Returns the actual number associated with the clocks hour name.
      * @param clock The hour name.
      */
-    //% subcategory="support"
+    //% subcategory="support" blockHidden=1
     //% group="Images"
     //% weight=10 blockGap=8
     //% blockId="device_clock" block="%clock"
@@ -286,8 +286,8 @@ namespace cyberbot {
      * The LED matrix for each of the hours on a clock face.
      * @param i Which hour is requested.
      */
-    //% blockId="cyberbot_clock" block="clock image %i"
-    //% subcategory="support"
+    //% blockId="cyberbot_clock" block="clock image %i" 
+    //% subcategory="support" blockHidden=1
     //% group="Images"
     //% color=#7600A8 
     //% weight=5

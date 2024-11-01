@@ -2,7 +2,7 @@
 Use this Library to add blocks for the [Cyber:bot Robot Kit – with Micro:bit](https://www.parallax.com/product/cyberbot-robot-kit-with-microbit/)
 
 ## Cyber:bot Makecode Tutorials
-[Parallax Makecode tutorials for the Cyber:bot](https://learn.parallax.com/tutorials/robot/cyberbot/makecode-blocks-cyberbot)
+[Parallax Makecode Tutorials for the Cyber:bot](https://learn.parallax.com/tutorials/robot/cyberbot/makecode-blocks-cyberbot)
 
 ## Cyber:bot Blocks
 The Cyber:bot extension adds two separate groups of blocks, that being the cyber:bot category and the extra blocks. The Cyber:bot blocks all directly control a part of the Cyber:bot that is either already part of the bot or is easily added using the boards built-in breadboard and our tutorials, these blocks are shown below.

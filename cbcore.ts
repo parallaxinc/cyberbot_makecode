@@ -344,21 +344,21 @@ namespace cyberbot {
         return read_r();
     }
 
-    /**
-     * Sends a signal to the PING))) which sends out an ultrasonic sound wave and records the time it takes in microseconds for the signal to return then outputs either the time it takes or the distance depending on the units you choose
-     * @param pin The cyberbot pin connected to the PING))), eg: ServoPin.Pin16
-     * @param unit The units used for the distance measured
-     */
-    //% blockId="cyberbot_ping" block="send ping on pin %pin measured in %unit"
-    //% group="Sensors"
-    //% weight=348
-    export function ping(pin: ServoPin, unit: Units) {
-        sendCommand(pin, null, PING_ECHO, 0, null, null);
-        let d = read_r();
-        if (unit == 1) { return d }
-        else if (unit == 2) { return d / 148 }
-        else { return d / 58 }
-    }
+    // /**
+    //  * Sends a signal to the PING))) which sends out an ultrasonic sound wave and records the time it takes in microseconds for the signal to return then outputs either the time it takes or the distance depending on the units you choose
+    //  * @param pin The cyberbot pin connected to the PING))), eg: ServoPin.Pin16
+    //  * @param unit The units used for the distance measured
+    //  */
+    // //% blockId="cyberbot_ping" block="send ping on pin %pin measured in %unit"
+    // //% group="Sensors"
+    // //% weight=348
+    // export function ping(pin: ServoPin, unit: Units) {
+    //     sendCommand(pin, null, PING_ECHO, 0, null, null);
+    //     let d = read_r();
+    //     if (unit == 1) { return d }
+    //     else if (unit == 2) { return d / 148 }
+    //     else { return d / 58 }
+    // }
 
     /**
      * Reads signals from an IR remote and returns a value equivalent of the button you pressed.

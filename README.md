@@ -68,7 +68,7 @@ Send a signal to activate an ultrasonic ping signal to be sent out, it then wait
 ```blocks
 let ir_value = cyberbot.ping(cyberbot.ServoPin.P16, cyberbot.Units.CM)
 ```
-Starts reading the binary values returned by the QTI sensors stating if light is seen (0) or if there is no light (1), then compiling all the sensors' values together converting them into a single decimal value. Next, it takes the decimal value from qti_states and converts it back to binary, which is then shifted over to the desired bit location (3) and returns the binary value that was stored there.
+This starts reading the binary values returned by the QTI sensors stating if light is seen (0) or if there is no light (1), then compiling all the sensors' values together converting them into a single decimal value. Next, it takes the decimal value from qti_states and converts it back to binary, which is then shifted over to the desired bit location (3) and returns the binary value that was stored there.
 ```blocks
 let qti_states = cyberbot.qtiRead(cyberbot.BotPin.P7, cyberbot.BotPin.P4)
 let bit_value = cyberbot.bitGet(qti_states, 3)

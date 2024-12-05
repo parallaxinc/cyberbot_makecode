@@ -1,5 +1,5 @@
 /**
- * All blocks in the support subcategory are defined here
+ * Blocks for controlling the Cyberbot
  */
 namespace cyberbot {
 
@@ -73,7 +73,7 @@ namespace cyberbot {
 
     /**
      * Change any key value pair to any dictionary that already exists.
-     * @param dict The dictionary you want to change something in.
+     * @param dict The dictionary you want to change something in. eg: dictionary
      * @param key The key you want to change.
      * @param val The value you want to change.
      */
@@ -91,7 +91,7 @@ namespace cyberbot {
 
     /**
      * Add any key value pair to any dictionary that already exists.
-     * @param dict The dictionary you want to add to.
+     * @param dict The dictionary you want to add to. eg: dictionary
      * @param key The key you want to add.
      * @param val The value you want to add.
      */
@@ -109,7 +109,7 @@ namespace cyberbot {
 
     /**
      * Remove any key value pair that is already contained within a dictionary.
-     * @param dict The dictionary you want to remove something from.
+     * @param dict The dictionary you want to remove something from. eg: dictionary
      * @param key The key for the key value pair you want to remove.
      */
     //% blockId="cyberbot_dict_remove" block="remove pair from %dict: key %key"
@@ -125,7 +125,7 @@ namespace cyberbot {
 
     /**
      * Search a dictionary using one of the keys contained in it and save the value.
-     * @param dict The dictionary to be searched.
+     * @param dict The dictionary to be searched. eg: dictionary
      * @param key The key where the value is stored.
      */
     //% blockId="cyberbot_dict_search" block="dictionary search $dict for $key"
@@ -142,7 +142,7 @@ namespace cyberbot {
 
     /**
      * Convert any dictionary into a basic string.
-     * @param dict The dictionary wanting to be converted
+     * @param dict The dictionary wanting to be converted. eg: dictionary
      */
     //% blockId="cyberbot_dict_to_str" block="convert dictionary $dict to string"
     //% dict.shadow="variables_get"

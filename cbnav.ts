@@ -1,5 +1,5 @@
 /**
- * All blocks in the support subcategory are defined here
+ * Blocks for controlling the Cyberbot
  */
 namespace cyberbot {
 
@@ -92,8 +92,8 @@ namespace cyberbot {
 
     /**
      * Choose the pins connected to each wheel's servo. 
-     * @param leftPin is the pin number connected to the left wheel servo, eg: ServoPin.Pin18
-     * @param rightPin is the pin number connected to the right wheel servo, eg: ServoPin.Pin19
+     * @param leftPin is the pin number connected to the left wheel servo, eg: cyberbot.ServoPin.Pin18
+     * @param rightPin is the pin number connected to the right wheel servo, eg: cyberbot.ServoPin.Pin19
      */
     //% blockId="cyberbot_set_left_servo" block="set left wheel %leftPin set right wheel %rightPin"
     //% weight=200
@@ -128,7 +128,7 @@ namespace cyberbot {
 
     /**
     * Set the bot on a path. It will not stop unless told to stop. 
-    * @param direction, eg: NavDirection.Forward
+    * @param direction, eg: cyberbot.NavDirection.Forward
     */
     //% blockId="cyberbot_nav_forever" block="go %direction"
     //% subcategory="navigation"
@@ -170,7 +170,7 @@ namespace cyberbot {
 
     /**
     * Move the bot in a direction for a certain number of seconds. 
-    * @param direction, eg: NavDirection.Forward
+    * @param direction, eg: cyberbot.NavDirection.Forward
     * @param duration Duration of time in seconds, eg: 1
     */
     //% blockId="cyberbot_nav_duration" block="go %direction for %duration seconds"
@@ -204,7 +204,7 @@ namespace cyberbot {
 
     /**
     * Set the bot on a path at a certain percent of full speed. 
-    * @param direction, eg: NavDirection.Forward
+    * @param direction, eg: cyberbot.NavDirection.Forward
     * @param speed Percentage of full speed, eg: 100
     */
     //% speed.min=0

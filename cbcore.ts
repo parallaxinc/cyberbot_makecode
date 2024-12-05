@@ -1,5 +1,5 @@
 /**
- * Start of the custom Cyberbot category containing all of the blocks in that main category.
+ * Blocks for controlling the Cyberbot.
  */
 //% color=#1D75B5 weight=100 icon="\uf2db" block="cyber:bot"
 //% groups='["Basic Read/Write", "Sound", "Servos", "Sensors", "Other"]'

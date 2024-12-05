@@ -250,7 +250,7 @@ namespace cyberbot {
 
     /**
     * Play a note at the desired frequency on the chosen pin for a certain amount of beats. 
-    * @param pin Pin connected to the speaker, eg: PiezoPin.Pin22
+    * @param pin Pin connected to the speaker, eg: cyberbot.PiezoPin.Pin22
     * @param frequency Frequency of the tone, eg: Note.C5
     * @param beatLength Length of beat, eg: BeatFraction.Quarter
     */
@@ -264,7 +264,7 @@ namespace cyberbot {
 
     /**
     * Play a tone in Hz for a specific duration in ms.
-    * @param pin Cyberbot pin connected to the speaker, eg: PiezoPin.Pin22
+    * @param pin Cyberbot pin connected to the speaker, eg: cyberbot.PiezoPin.Pin22
     * @param frequency Frequency of the tone
     * @param duration Duration of the tone in milliseconds, eg: 1000
     */
@@ -277,7 +277,7 @@ namespace cyberbot {
 
     /**
      * Set the Angle of the servo from 0-180.
-     * @param pin The cyberbot pin connected to the servo, eg: ServoPin.Pin18
+     * @param pin The cyberbot pin connected to the servo, eg: cyberbot.ServoPin.Pin18
      * @param angle The desire angle to set the servo to.
      */
     //% blockId="cyberbot_servo_angle" block="set servo angle on pin %pin to %angle"
@@ -291,7 +291,7 @@ namespace cyberbot {
 
     /**
     * Set a servo's speed.
-    * @param pin The cyberbot pin connected to the servo, eg: ServoPin.Pin18
+    * @param pin The cyberbot pin connected to the servo, eg: cyberbot.ServoPin.Pin18
     * @param velocity The velocity of the servo from -75 to 75, eg: 0
     */
     //% blockId="cyberbot_servo_speed" block="set servo speed on pin %pin to %velocity"
@@ -307,7 +307,7 @@ namespace cyberbot {
 
     /**
      * Set the acceleration of the servo.
-     * @param pin The cyberbot pin connected to the servo, eg: ServoPin.Pin18
+     * @param pin The cyberbot pin connected to the servo, eg: cyberbot.ServoPin.Pin18
      * @param acceleration The speed that the servo accelerates, eg: 0
      */
     //% blockId="cyberbot_servo_accelerate" block="set servo acceleration on pin %pin to %acceleration"
@@ -319,7 +319,7 @@ namespace cyberbot {
 
     /**
     * Stop the servo. 
-    * @param pin The cyberbot pin connected to the servo, eg: ServoPin.Pin18
+    * @param pin The cyberbot pin connected to the servo, eg: cyberbot.ServoPin.Pin18
     */
     //% blockId="cyberbot_servo_stop" block="stop servo on pin %pin"
     //% group="Servos"
@@ -346,7 +346,7 @@ namespace cyberbot {
 
     // /**
     //  * Sends a signal to the PING))) which sends out an ultrasonic sound wave and records the time it takes in microseconds for the signal to return then outputs either the time it takes or the distance depending on the units you choose
-    //  * @param pin The cyberbot pin connected to the PING))), eg: ServoPin.Pin16
+    //  * @param pin The cyberbot pin connected to the PING))), eg: cyberbot.ServoPin.Pin16
     //  * @param unit The units used for the distance measured
     //  */
     // //% blockId="cyberbot_ping" block="send ping on pin %pin measured in %unit"

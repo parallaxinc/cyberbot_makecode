@@ -92,8 +92,8 @@ namespace cyberbot {
 
     /**
      * Choose the pins connected to each wheel's servo. 
-     * @param leftPin is the pin number connected to the left wheel servo, eg: cyberbot.ServoPin.Pin18
-     * @param rightPin is the pin number connected to the right wheel servo, eg: cyberbot.ServoPin.Pin19
+     * @param leftPin is the pin number connected to the left wheel servo, eg: cyberbot.ServoPin.P18
+     * @param rightPin is the pin number connected to the right wheel servo, eg: cyberbot.ServoPin.P19
      */
     //% blockId="cyberbot_set_left_servo" block="set left wheel %leftPin set right wheel %rightPin"
     //% weight=200

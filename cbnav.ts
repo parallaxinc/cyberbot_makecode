@@ -1,5 +1,5 @@
 /**
- * All blocks in the support subcategory are defined here
+ * Blocks for controlling the Cyberbot
  */
 namespace cyberbot {
 

@@ -401,6 +401,19 @@ namespace cyberbot {
     }
 
     /**
+     * Measure the time it takes for a connected capacitor to charge/discharge (1/0) through a resistor.
+     * @param pin The desired pin
+     * @param s The settings for the sensor. Time to charge is 1 and time to discharge is 0.
+     */
+    //% blockId="cyberbot_rc_time" block="RC time %s on pin %pin"
+    //% group="Sensors"
+    //% weight=345
+    export function rcTime(s: number, pin: BotPin): number {
+        sendCommand(pin, null, RCTIME, s, null, null);
+        return read_r();
+    }
+
+    /**
      * Send out a Pulse on the desired pin.
      * @param pin The desired pin.
      * @param d The pulse duration

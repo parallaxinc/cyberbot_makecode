@@ -177,7 +177,7 @@ namespace cyberbot {
             freq.setNumber(NumberFormat.Int32LE, 0, Math.round(f))
             args = Buffer.concat([args, freq]);
         }
-        console.log(args.toHex())
+        // console.log(args.toHex())
         pins.i2cWriteBuffer(ADDRESS, args);
 
         // build command and write

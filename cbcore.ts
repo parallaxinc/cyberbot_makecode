@@ -132,27 +132,32 @@ namespace cyberbot {
 
     let isConnected = false;
 
-    // Make sure the propeller chips is properly connected
+    // Establish I2C communication between the micro:bit and cyber:bot boards
     function connect() {
-
         while (true) {
-            pins.digitalWritePin(DigitalPin.P8, 0)
-            pins.digitalWritePin(DigitalPin.P8, 1)
-            pause(10);
-            if (pins.i2cReadNumber(ADDRESS, NumberFormat.UInt16LE) !== 0) {
-                //pins.digitalWritePin(DigitalPin.P8, 1)
-                pause(10);
-                pins.i2cWriteNumber(ADDRESS, 12, NumberFormat.UInt16LE);
-                pause(10);
-                isConnected = true;
+            let a = pins.i2cReadNumber(ADDRESS, NumberFormat.UInt16LE)
+            if( a != 0){
+                pins.setPull(DigitalPin.P8, PinPullMode.PullUp);
+                pause(10)
+                pins.i2cWriteNumber(ADDRESS, 12, NumberFormat.Int8BE)
+                while(true){
+                    let b = pins.i2cReadNumber(ADDRESS, NumberFormat.UInt16LE)
+                    if(b != 0){
+                        isConnected = true
+                        break
+                    }
+                }
                 break;
             }
         }
+        pause(500)
+        sendCommand(null, null, HANDSHAKE, 0, null, null);
     }
 
     function botDisable(): void {
-        pins.setPull(DigitalPin.P8, PinPullMode.PullNone);
-        basic.pause(200);
+        pins.setPull(DigitalPin.P8, PinPullMode.PullDown);
+        isConnected = false
+        pause(200);
         control.reset();
     }
 
@@ -178,7 +183,11 @@ namespace cyberbot {
             args = Buffer.concat([args, freq]);
         }
         // console.log(args.toHex())
-        pins.i2cWriteBuffer(ADDRESS, args);
+        let sca = pins.i2cWriteBuffer(ADDRESS, args);
+        if(sca==-1010){
+            isConnected = false
+            botDisable()
+        }
 
         // build command and write
         pins.i2cWriteBuffer(ADDRESS, Buffer.fromArray([0, cmd]));

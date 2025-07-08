@@ -121,7 +121,8 @@ namespace cyberbot {
     export const IR_DETECT = 31
     export const PWM_OUT = 32
     export const QTI_READ = 33
-    //const HANDSHAKE     = 99
+    export const I2C_REPEAT = 40
+    const HANDSHAKE     = 99
     //const PWR_LED_WARN  = 25
     //const PWR_BRN_DET   = 24
 
@@ -445,6 +446,21 @@ namespace cyberbot {
     export function pulseIn(s: number, pin: BotPin): number {
         sendCommand(pin, null, PULSIN, s, null, null);
         return read_r();
+    }
+
+    /**
+     * Connects a pair of cyber:bot board I/O pins to the micro:bit module's I2C bus.
+     * @param pinSCL The cyber:bot board pin that connects to the micro:bit module's I2C SCL (serial clock) line.
+     * @param pinSDA The cyber:bot board pin that connects to the micro:bit module's I2C SDA (serial data) line.
+     * @param f The frequency of the IR light being sent out.
+     */
+    //% blockId="cyberbot_i2cRepeat" 
+    //% block="I2C Repeat on with clock signal on pin %pinSCL data on %pinSDA"
+    //% inlineInputMode="external"
+    //% group="Other"
+    //% weight=350
+    export function i2cRepeat(pinSCL: BotPin, pinSDA: BotPin) {
+        sendCommand( 0, 0, I2C_REPEAT,null,pinSCL, pinSDA);
     }
 
     /**
